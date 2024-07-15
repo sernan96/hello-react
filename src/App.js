@@ -149,7 +149,7 @@ function App() {
     }
     content = <Article title={title} body={body}></Article>;
     contextControl = (
-      <li>
+      <><li>
         <a
           href={'/update' + id}
           onClick={(event) => {
@@ -160,6 +160,17 @@ function App() {
           Update
         </a>
       </li>
+      <li><input type="button" value="Delete" onClick={()=>{
+        alert("삭제되었습니다.");
+        const newTopics = []
+        for(let i=0; i<topics.length; i++){
+          if(topics[i].id!==id){
+            newTopics.push(topics[i]);
+          }
+        }
+        setTopics(newTopics);
+        setMode('WELCOME');
+      }}/></li></>
     );
   } else if (mode === 'CREATE') {
     content = (
@@ -230,6 +241,7 @@ function App() {
           </a>
         </li>
         {contextControl}
+
       </ul>
     </div>
   );
